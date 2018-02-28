@@ -22,9 +22,9 @@ class ExpenseList extends React.Component {
           onComplete={this.props.expenseListExpenseCreate}
         />
         {this.props.expenses?
-          <ul>
+          <p>
             {this.props.expenses[this.props.categoryId].map(expense => <ExpenseItem key={expense._id} expense={expense} />)}
-          </ul>
+          </p>
           :
           undefined
         }

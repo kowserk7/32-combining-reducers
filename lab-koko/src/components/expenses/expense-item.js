@@ -8,17 +8,17 @@ import { expenseUpdate, expenseDelete } from '../../actions/expense-actions';
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = this.props.expense; 
     this.state.edit = false;
     this.handleDelete = this.handleDelete.bind(this);
+    console.log(this.state);
   }
   handleDelete() {
     this.props.expenseItemExpenseDelete(this.state);
   }
   render() { 
     return ( 
-      <div onDoubleClick={() => this.setState({edit: !this.state.edit})}>
+      <div className="expense-item" onDoubleClick={() => this.setState({edit: !this.state.edit})}>
         <h3>{this.props.expense.title}</h3>
         <p>Price: ${this.props.expense.price}</p>
         <button id={this.props.expense._id} onClick={this.handleDelete}>Delete</button>

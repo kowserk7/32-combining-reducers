@@ -11,20 +11,20 @@ export default (state = {}, action) => {
   case 'EXPENSE_CREATE' : {
     let categoryId = payload.categoryId;
     let expenses = state[categoryId];
-    let updatedExpenses = [...expenses, payload];
-    return {...state, [categoryId]: updatedExpenses};
+    let changedExpenses = [...expenses, payload];
+    return {...state, [categoryId]: changedExpenses};
   }
   case 'EXPENSE_UPDATE' : {
-    let  categoryId = payload.categoryId;
-    let updatedState = {...state};
-    updatedState[categoryId] = state[categoryId].map(expense => expense._id === payload._id ? payload : expense);
-    return updatedState;
+    let categoryId = payload.categoryId;
+    let changedState = {...state};
+    changedState[categoryId] = state[categoryId].map(expense => expense._id === payload._id ? payload : expense);
+    return changedState;
   }
   case 'EXPENSE_DELETE' : {
     let categoryId = payload.categoryId;
-    let updatedState = {...state};
-    updatedState[categoryId] = state[categoryId].filter(expense => expense._id !== payload._id);
-    return updatedState;
+    let changedState = {...state};
+    changedState[categoryId] = state[categoryId].filter(expense => expense._id !== payload._id);
+    return changedState;
   }
   case 'EXPENSE_RESET' : return {};
   default: return state;

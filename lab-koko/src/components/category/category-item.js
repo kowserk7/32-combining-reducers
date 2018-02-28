@@ -1,3 +1,5 @@
+import './category-item.scss';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import CategoryForm from '../category/category-form';
@@ -20,16 +22,18 @@ class CategoryItem extends React.Component {
   }
   render() { 
     return ( 
-      <div onDoubleClick={() => this.setState({edit: !this.state.edit})}>
-        <h3>{this.props.category.title}</h3>
-        <p>Budget: ${this.props.category.budget}</p>
-        <button id={this.props.category._id} onClick={this.handleDelete}>Delete</button>
-
+      <div className="categoryItems" className="animated lightSpeedIn">
+        <section className="category-item" onDoubleClick={() => this.setState({edit: !this.state.edit})}>
+          <h3>{this.props.category.title}</h3>
+          <p>Budget: ${this.props.category.budget}</p>
+          <button id={this.props.category._id} onClick={this.handleDelete}>Delete</button>
+        </section>
         {renderIf(this.state.edit,
           <CategoryForm category={this.props.category} 
             buttonText='Update' 
             onComplete={this.props.categoryItemCategoryUpdate}/>
         )}
+        <h2>Add an expense</h2>
         <ExpenseList 
           className="expense-list"
           categoryId={this.props.category._id}
