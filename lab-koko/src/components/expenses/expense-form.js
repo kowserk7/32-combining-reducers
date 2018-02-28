@@ -1,14 +1,14 @@
 import React from 'react';
 
-class CategoryForm extends React.Component {
+class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.category
-      ? this.props.category
+    this.state = this.props.expenses
+      ? this.props.expenses
       : {
+        categoryId: this.props.categoryId,
         title: '',
-        budget: 0,
-        edit: false,
+        price: 0,
       };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,29 +16,28 @@ class CategoryForm extends React.Component {
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
-  handleSubmit(e) {
-    e.preventDefault();
+  handleSubmit(event) {
+    event.preventDefault();
     this.props.onComplete(this.state);
     this.setState({
       title: '',
-      budget: 0,
-      edit: false,
+      price: 0,
     });
   }
   render() { 
     return ( 
-      <form className="category-form" onSubmit={this.handleSubmit}>
+      <form className="expense-form" onSubmit={this.handleSubmit}>
         <input className="title"
           type="text"
           name="title"
           value={this.state.title}
-          placeholder="Category Title"
+          placeholder="Expense Title"
           onChange= {this.handleChange}
         />
-        <input className="budget"
+        <input className="price"
           type="number"
-          name="budget"
-          value={this.state.budget}
+          name="price"
+          value={this.state.price}
           onChange= {this.handleChange}
         />
         <button type="submit">{this.props.buttonText}</button>
@@ -47,4 +46,4 @@ class CategoryForm extends React.Component {
   }
 }
  
-export default CategoryForm;
+export default ExpenseForm;

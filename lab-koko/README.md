@@ -1,4 +1,4 @@
-# Lab 31 - Redux
+# Lab 32 - Budget Tracker Continued
 
 **Author**: Koko Kassa
 

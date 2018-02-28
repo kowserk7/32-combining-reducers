@@ -6,9 +6,11 @@ import { categoryCreate, categoryUpdate, categoryDestroy } from '../../actions/c
 
 class Dashboard extends React.Component {
   render() { 
+    console.log(this.props);
+    
     return ( 
       <section>
-        <h1> Welcome</h1>
+        <h1>Budget Tracker</h1>
         <CategoryForm 
           buttonText= 'Create'
           onComplete={this.props.dashboardCategoryCreate}
@@ -25,7 +27,7 @@ class Dashboard extends React.Component {
 } 
 const mapStateToProps = state => ({
   categories: state.categories,
-  cards: state.cards,
+  expenses: state.expenses,
 });
 const mapDispatchToProps = (dispatch, getState) => ({
   dashboardCategoryCreate: category => dispatch(categoryCreate(category)),

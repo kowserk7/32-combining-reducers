@@ -1,0 +1,42 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import ExpenseForm from './expense-form';
+import { renderIf } from '../../lib/utils';
+import { expenseUpdate, expenseDelete } from '../../actions/expense-actions';
+
+
+class ExpenseItem extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+    this.state = this.props.expense; 
+    this.state.edit = false;
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+  handleDelete() {
+    this.props.expenseItemExpenseDelete(this.state);
+  }
+  render() { 
+    return ( 
+      <div onDoubleClick={() => this.setState({edit: !this.state.edit})}>
+        <h3>{this.props.expense.title}</h3>
+        <p>Price: ${this.props.expense.price}</p>
+        <button id={this.props.expense._id} onClick={this.handleDelete}>Delete</button>
+        {renderIf(this.state.edit,
+          <ExpenseForm expense={this.props.expense} 
+            buttonText='Update' 
+            onComplete={this.props.expenseItemExpenseUpdate}/>
+        )}
+      </div>
+    );
+  }
+} 
+const mapStateToProps = state => ({
+  categories: state,
+});
+const mapDispatchToProps = (dispatch, getState) => ({
+  expenseItemExpenseUpdate: expense => dispatch(expenseUpdate(expense)),
+  expenseItemExpenseDelete: expense => dispatch(expenseDelete(expense)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseItem);
