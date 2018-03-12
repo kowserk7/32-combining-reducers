@@ -12,8 +12,25 @@ describe ('category reducer', () => {
       type: 'CATEGORY_CREATE',
       payload: catTwo,
     });
-    console.log(state);
     expect(state).toContain(catOne);
     expect(state).toContain(catTwo);
+  });
+  it ('should handle CATEGORY_UPDATE', () => {
+    let catOne = { _id: '1234', title: 'wat', budget: 67, edit: false, timestamp: new Date() };
+    let catTwo = { _id: '4567', title: 'who', budget: 89, edit: false, timestamp: new Date() };
+
+    let state = Reducer([catOne], {
+      type: 'CATEGORY_UPDATE',
+      payload: catTwo,
+    });
+    expect(state).toContain(catOne);
+  });  it ('should handle CATEGORY_DELETE', () => {
+    let catOne = { _id: '1234', title: 'wat', budget: 67, edit: false, timestamp: new Date() };
+    let catTwo = { _id: '4567', title: 'who', budget: 89, edit: false, timestamp: new Date() };
+
+    let state = Reducer([catOne], {
+      type: 'CATEGORY_DELETE',
+      payload: catTwo,
+    });
   });
 });

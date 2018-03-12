@@ -3,7 +3,7 @@
 **Author**: Koko Kassa
 
 ## Overview
-An app that mananges budget.
+An app that manages budget.
 
 #### Configuration
 * `package.json`

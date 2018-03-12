@@ -14,21 +14,19 @@ describe('<CategoryForm />', function() {
     });
     afterAll(() => this.wrapper.unmount());
     it ('should render a category form component', () => {
-      console.log(this.wrapper.state());
       expect(this.wrapper.length).toEqual(1);
       expect(this.wrapper.find('.category-form').length).toEqual(1);
     });
-    it('should have the dafault state object and they\'re assigned values', () => {
+    it('should have the default state object and they\'re assigned values', () => {
       expect(this.wrapper.state().title).toEqual('');
       expect(this.wrapper.state().budget).toEqual(0);
       expect(this.wrapper.state().edit).toEqual(false);      
     });
-    it('ahould change the state object when the form input is provided', () => {
+    it('should change the state object when the form input is provided', () => {
       let event = {target: { name:'title', value: 'Test'}};
       let event2 = {target: {name:'budget', value:'45'}};
       this.wrapper.find('.category-form .title').simulate('change', event);
       this.wrapper.find('.category-form .budget').simulate('change', event2);
-      console.log(this.wrapper.state());
     });
   });
   describe('Full Mounting', function() {
