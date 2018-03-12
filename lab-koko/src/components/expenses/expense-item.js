@@ -4,21 +4,19 @@ import ExpenseForm from './expense-form';
 import { renderIf } from '../../lib/utils';
 import { expenseUpdate, expenseDelete } from '../../actions/expense-actions';
 
-
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.expense; 
     this.state.edit = false;
     this.handleDelete = this.handleDelete.bind(this);
-    console.log(this.state);
   }
   handleDelete() {
     this.props.expenseItemExpenseDelete(this.state);
   }
   render() { 
     return ( 
-      <div className="expense-item" onDoubleClick={() => this.setState({edit: !this.state.edit})}>
+      <div className="expense-item" id={this.props.expense._id} onDoubleClick={() => this.setState({edit: !this.state.edit})}>
         <h3>{this.props.expense.title}</h3>
         <p>Price: ${this.props.expense.price}</p>
         <button id={this.props.expense._id} onClick={this.handleDelete}>Delete</button>
@@ -38,5 +36,4 @@ const mapDispatchToProps = (dispatch, getState) => ({
   expenseItemExpenseUpdate: expense => dispatch(expenseUpdate(expense)),
   expenseItemExpenseDelete: expense => dispatch(expenseDelete(expense)),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseItem);

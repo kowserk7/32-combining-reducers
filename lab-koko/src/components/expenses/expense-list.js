@@ -21,6 +21,9 @@ class ExpenseList extends React.Component {
           categoryId ={this.props.categoryId}
           onComplete={this.props.expenseListExpenseCreate}
         />
+        {/* {this.renderIf(this.props.expense[this.props.categoryId],
+          this.props.expenses[this.props.categoryId].map(expense => <ExpenseItem key={expense._id} expense={expense} />)
+        )} */}
         {this.props.expenses?
           <p>
             {this.props.expenses[this.props.categoryId].map(expense => <ExpenseItem key={expense._id} expense={expense} />)}

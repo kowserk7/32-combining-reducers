@@ -6,8 +6,6 @@ import { categoryCreate, categoryUpdate, categoryDestroy } from '../../actions/c
 
 class Dashboard extends React.Component {
   render() { 
-    console.log(this.props);
-    
     return ( 
       <section>
         <h1>Budget Tracker</h1>
@@ -32,5 +30,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => ({
   dashboardCategoryCreate: category => dispatch(categoryCreate(category)),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

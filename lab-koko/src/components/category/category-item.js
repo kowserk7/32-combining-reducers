@@ -6,8 +6,6 @@ import { categoryUpdate, categoryDelete } from '../../actions/category-actions';
 import ExpenseList from '../expenses/expense-list';
 import { expenseCreate } from '../../actions/expense-actions';
 
-
-
 class CategoryItem extends React.Component {
   constructor(props) {
     super(props);
@@ -21,11 +19,11 @@ class CategoryItem extends React.Component {
   render() { 
     return ( 
       <div className="categoryItems" className="animated lightSpeedIn">
-        <section className="category-item" onDoubleClick={() => this.setState({edit: !this.state.edit})}>
+        <div className="category-item" onDoubleClick={() => this.setState({edit: !this.state.edit})}>
           <h3>{this.props.category.title}</h3>
           <p>Budget: ${this.props.category.budget}</p>
           <button id={this.props.category._id} onClick={this.handleDelete}>Delete</button>
-        </section>
+        </div>
         {renderIf(this.state.edit,
           <CategoryForm category={this.props.category} 
             buttonText='Update' 
@@ -48,7 +46,5 @@ const mapDispatchToProps = (dispatch, getState) => ({
   categoryItemCategoryUpdate: category => dispatch(categoryUpdate(category)),
   categoryItemCategoryDelete: category => dispatch(categoryDelete(category)),
   categoryItemExpenseCreate: expense => dispatch(expenseCreate(expense)),
-  
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);
