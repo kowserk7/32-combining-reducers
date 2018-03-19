@@ -21,7 +21,6 @@ describe('<Dashboard />', function() {
 
   afterAll(() => this.wrapper.unmount());
   it('should render two category items in the DOM', () => {
-    // console.log(this.wrapper.find('.dashboard'));
-    // expect(this.wrapper.length).toBe(1);
+    expect(this.wrapper.length).toBe(1);
   });
 });

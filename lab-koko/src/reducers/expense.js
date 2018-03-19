@@ -2,7 +2,8 @@ export default (state = {}, action) => {
   let {type, payload} = action;
 
   switch(type) {
-  case 'CATEGORY_CREATE': return {...state, [payload._id]: []};
+  case 'CATEGORY_CREATE':
+    return {...state, [payload._id]: []};
   case 'CATEGORY_DELETE':
   { let changedState = {...state};
     delete changedState[payload._id];
